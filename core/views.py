@@ -1,6 +1,11 @@
 from django.shortcuts import render
 
-def index(request):
+from core.models import Video
 
-    return render(request, "index.html")
+def index(request):
+    video = Video.objects.filter(visibility='public')
+    context = {
+        'video' : video,
+    }
+    return render(request, "index.html",context)
     

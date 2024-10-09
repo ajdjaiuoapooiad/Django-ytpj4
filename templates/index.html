@@ -116,132 +116,29 @@
 
             <div class="video-container">
 
+                {% for v in video %}
                 <div class="video">
 
                         <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
+                            <img src="{{v.image.url}}" alt="">
                         </div>
                         
                         <div class="video-details">
                             <div class="author">
-                                <img src="images/logo.jpg" alt="">
+                                <img src="{% static 'images/logo.jpg' %}" alt="">
 
                             </div>
 
                             <div class="title">
 
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
+                                <h3>{{v.title}}</h3>
+                                <a href=""><small>{{v.user}}<i class="fas fa-check-circle"></i></small></a>
+                                <span>{{v.views}} Views, {{v.date|timesince}} ago</span>
                             </div>
                         </div>
                 </div>
 
-                 <div class="video">
-
-                        <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
-                        </div>
-                        
-                        <div class="video-details">
-                            <div class="author">
-                                <img src="images/logo.jpg" alt="">
-
-                            </div>
-
-                            <div class="title">
-
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
-                            </div>
-                        </div>
-                </div>
-
-                 <div class="video">
-
-                        <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
-                        </div>
-                        
-                        <div class="video-details">
-                            <div class="author">
-                                <img src="images/logo.jpg" alt="">
-
-                            </div>
-
-                            <div class="title">
-
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
-                            </div>
-                        </div>
-                </div>
-
-                 <div class="video">
-
-                        <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
-                        </div>
-                        
-                        <div class="video-details">
-                            <div class="author">
-                                <img src="images/logo.jpg" alt="">
-
-                            </div>
-
-                            <div class="title">
-
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
-                            </div>
-                        </div>
-                </div>
-
-                 <div class="video">
-
-                        <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
-                        </div>
-                        
-                        <div class="video-details">
-                            <div class="author">
-                                <img src="images/logo.jpg" alt="">
-
-                            </div>
-
-                            <div class="title">
-
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
-                            </div>
-                        </div>
-                </div>
-
-                 <div class="video">
-
-                        <div class="video-thumbnail">
-                            <img src="images/1.jpg" alt="">
-                        </div>
-                        
-                        <div class="video-details">
-                            <div class="author">
-                                <img src="images/logo.jpg" alt="">
-
-                            </div>
-
-                            <div class="title">
-
-                                <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                                <a href=""><small>Deficix <i class="fas fa-check-circle"></i></small></a>
-                                <span>1M Views, 1Months Ago</span>
-                            </div>
-                        </div>
-                </div>
-
+                {% endfor %}
                 
 
             </div>
