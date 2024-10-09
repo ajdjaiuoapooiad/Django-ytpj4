@@ -20,7 +20,9 @@
     <div class="header">
         <div class="header-left">
             <i id="menu" class="material-icons">menu</i>
-            <img  src="https://www.xda-developers.com/files/2017/08/After-12-Years-Google-Gives-YouTube-a-New-Logo-1900x700_c.png" alt="">
+            <a href="{% url 'index' %}">
+                <img  src="https://www.xda-developers.com/files/2017/08/After-12-Years-Google-Gives-YouTube-a-New-Logo-1900x700_c.png" alt="">
+            </a>
         </div>
 
         <div class="header-search">
@@ -120,7 +122,7 @@
                 <div class="video">
 
                         <div class="video-thumbnail">
-                            <img src="{{v.image.url}}" alt="">
+                            <a href="{% url 'video-detail' v.id %}"><img src="{{v.image.url}}" alt=""></a>
                         </div>
                         
                         <div class="video-details">
@@ -131,7 +133,9 @@
 
                             <div class="title">
 
-                                <h3>{{v.title}}</h3>
+                                <a href="{% url 'video-detail' v.id %}">
+                                    <h3>{{v.title|truncatechars:34}}</h3>
+                                </a>
                                 <a href=""><small>{{v.user}}<i class="fas fa-check-circle"></i></small></a>
                                 <span>{{v.views}} Views, {{v.date|timesince}} ago</span>
                             </div>
