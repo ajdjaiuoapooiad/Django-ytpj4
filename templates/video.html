@@ -104,14 +104,17 @@
                     <div class="details flex border-bottom">
                         <div class="img">
                             <img 
-                                src="{% static 'images/logo.jpg' %}" 
+                                src="{{video.user.channel.image.url}}" 
                                 alt=""
                             >
                         </div>
                         
                         <div class="heading">
-                            <h4>Dephisix <i class="fas fa-check-circle"></i></h4>
-                            <span id="count">2.4 K</span> <span>Subscribers</span>
+                            <h4>
+                                {{video.user.channel.channel_name}}
+                                {% if video.user.channel.verified == True %} <i class="fas fa-check-circle"></i> {% endif %}     
+                            </h4>
+                            <span id="count">{{video.user.channel.subscribers.all.count}}</span> <span>Subscribers</span>
                             <h5>{{video.description}}</h5>
                             <span> <i class="fa fa-caret-down"></i> show more</span>
                         </div>
