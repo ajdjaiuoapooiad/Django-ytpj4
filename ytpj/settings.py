@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     
     'core',
     'userauths',
+    
     'taggit',
+    'import_export',
 ]
 
 MIDDLEWARE = [
