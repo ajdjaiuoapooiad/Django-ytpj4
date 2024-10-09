@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     'core',
     'userauths',
+    'channel',
     
     'taggit',
     'import_export',
