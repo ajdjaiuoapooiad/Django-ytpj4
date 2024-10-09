@@ -1,6 +1,8 @@
-from django.shortcuts import render
 
-from core.models import Video
+from django.shortcuts import render
+from django.db.models import Count
+
+from core.models import Comment, Video
 
 def index(request):
     video = Video.objects.filter(visibility='public')
@@ -14,8 +16,18 @@ def videoDetail(request, pk):
     video.views = video.views + 1
     video.save()
     
+    # Suggesting Video
+    video_tags_id = video.tags.values_list("id", flat=True)
+    similar_videos = Video.objects.filter(tags__in=video_tags_id).exclude(id=video.id)
+    similar_videos = similar_videos.annotate(same_tags=Count("tags")).order_by("-same_tags", "-date")[:25]
+
+    comment = Comment.objects.filter(active=True, video=video).order_by("-date")
+
+    
     context = {
         'video' : video,
+        "comment":comment,
+        "similar_videos":similar_videos,
     }
     
     
