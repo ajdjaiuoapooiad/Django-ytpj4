@@ -127,7 +127,7 @@
                         
                         <div class="video-details">
                             <div class="author">
-                                <img src="{% static 'images/logo.jpg' %}" alt="">
+                                <img src="{{v.user.channel.image.url}}" alt="">
 
                             </div>
 
@@ -136,7 +136,11 @@
                                 <a href="{% url 'video-detail' v.id %}">
                                     <h3>{{v.title|truncatechars:34}}</h3>
                                 </a>
-                                <a href=""><small>{{v.user}}<i class="fas fa-check-circle"></i></small></a>
+                                <a href="">
+                                    <small>{{v.user.channel.channel_name}}
+                                        {% if v.user.channel.verified == True %} <i class="fas fa-check-circle"></i> {% endif %}
+                                    </small>
+                                </a>
                                 <span>{{v.views}} Views, {{v.date|timesince}} ago</span>
                             </div>
                         </div>
