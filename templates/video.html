@@ -128,7 +128,11 @@
                     <hr>
 
 
-                    <!-- Comment -->
+
+
+
+
+                    <!-- Comment        ------------------------------->
 
                     <hr class="mid-hr">
 
@@ -151,7 +155,7 @@
 
                             {% csrf_token %}
                             <div class="heading flex">
-                                <input type="hidden" value="{{ video.id }}" id="id" name="id">
+                                <input type="" value="{{ video.id }}" id="id" name="id">
                                 <input type="text" placeholder="Add a comment..." id="comment" name="comment">
                                 <button ><i class="material-icons">send</i></button>
                             </div>
@@ -277,10 +281,31 @@
 
 
 
+
+
+<!-- Ajax  ------------------- -->
+
 <script type="text/javascript">
     $(document).on('submit','#comment_form',function(e){
         e.preventDefault()
         let _comment = $("#comment").val()
         console.log(_comment);
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'save-comment' %}",
+            data: {
+                id: $("#id").val(),
+                comment: _comment,
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: function(){
+                console.log("Comment passed to backend");
+
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
     })
 </script>

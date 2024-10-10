@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Count
 
@@ -32,3 +33,17 @@ def videoDetail(request, pk):
     
     
     return render(request, "video.html",context)
+
+def ajax_save_comment(request):
+    if request.method == "POST":
+        pk = request.POST.get("id")
+
+        comment = request.POST.get("comment")
+        video = Video.objects.get(id=pk)
+        user = request.user
+
+        new_comment = Comment.objects.create(comment=comment, user=user, video=video)
+        new_comment.save()
+
+        response = "Comment Posted"
+        return HttpResponse(response)
