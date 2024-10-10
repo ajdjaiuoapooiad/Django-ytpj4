@@ -1,7 +1,9 @@
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.db.models import Count
+from django.views.decorators.csrf import csrf_exempt
+
 
 from core.models import Comment, Video
 
@@ -47,3 +49,13 @@ def ajax_save_comment(request):
 
         response = "Comment Posted"
         return HttpResponse(response)
+
+@csrf_exempt
+def ajax_delete_comment(request):
+    if request.method == "POST":
+        id = request.POST.get("cid")
+        comment = Comment.objects.get(id=id)
+        comment.delete()
+        return JsonResponse({"status":1})
+    else:
+        return JsonResponse({"status":2})
