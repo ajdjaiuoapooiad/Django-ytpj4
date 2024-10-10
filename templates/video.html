@@ -15,7 +15,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 </head>
@@ -103,6 +103,8 @@
                         </div>
                     </div>
 
+    <!-- Channel        --------------------------->
+
                     <div class="details flex border-bottom">
                         <div class="img">
                             <img 
@@ -122,7 +124,9 @@
                         </div>
 
                         <div>
-                            <button  id="sub-btn"  class="subscribe-btn">Subscribe</button>
+                            <button  id="sub_btn" onclick="addsub()" class="subscribe-btn">
+                                Subscribe
+                            </button>
                         </div>
                     </div>
                     <hr>
@@ -288,7 +292,7 @@
     </main>
     
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- <script src="{% static 'js/main.js' %}"></script> -->
 </body>
 </html>
 
@@ -399,5 +403,39 @@
     })
 
 
+</script>
+
+
+<!-- Subscribe Feature -->
+<script>
+    let subcounter = document.getElementById('count')
+    sub_button = document.getElementById('sub_btn')
+    subscriber_added = []
+    
+    function addsub(){
+        axios
+        .get('{% url "add_sub" video.user.id %}')
+        .then(response =>{
+                this.response = response.data;
+                sub_button.innerHTML =  this.response;
+                loadsub()
+                // sub_button.classList.remove('loading')
+                sub_button.classList.toggle("unsubscribe-btn")
+        })
+    }
+    
+    function loadsub(){
+        axios
+        .get('{% url "subLoad" channel.pk %}')
+        .then(response =>{
+                this.response = response.data;
+                subscriber_added = this.response
+                subcounter.innerHTML = subscriber_added.length
+
+    
+        })
+    }
+    
+    window.onload = loadsub;
 </script>
 

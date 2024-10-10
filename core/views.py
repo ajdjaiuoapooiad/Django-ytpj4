@@ -5,6 +5,7 @@ from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 
 
+from channel.models import Channel
 from core.models import Comment, Video
 
 def index(request):
@@ -16,6 +17,8 @@ def index(request):
     
 def videoDetail(request, pk):
     video = Video.objects.get(id=pk)
+    channel = Channel.objects.get(user=video.user)
+    
     video.views = video.views + 1
     video.save()
     
@@ -29,6 +32,7 @@ def videoDetail(request, pk):
     
     context = {
         'video' : video,
+        "channel": channel,
         "comment":comment,
         "similar_videos":similar_videos,
     }
@@ -59,3 +63,24 @@ def ajax_delete_comment(request):
         return JsonResponse({"status":1})
     else:
         return JsonResponse({"status":2})
+    
+# Subscribe Functions
+def add_new_subscribers(request, id):
+    subscribers = Channel.objects.get(id=id)
+    user = request.user
+    
+    # if Destiny > [Desphixs Subscribers]
+    if user in subscribers.subscribers.all():
+        subscribers.subscribers.remove(user)
+        response = "Subscribe"
+        return JsonResponse(response, safe=False, status=200)
+    else:
+        subscribers.subscribers.add(user)
+        response = "Unsubscribe"
+        return JsonResponse(response, safe=False, status=200)
+    
+    # Load channel subs
+def load_channel_subs(request, id):
+    subscribers = Channel.objects.get(id=id)
+    sub_lists = list(subscribers.subscribers.values())
+    return JsonResponse(sub_lists, safe=False, status=200)

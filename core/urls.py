@@ -8,4 +8,8 @@ urlpatterns = [
      # Saving Comment to db
     path("ajax-save-comment/", views.ajax_save_comment, name="save-comment"),
     path("ajax-delete-comment/", views.ajax_delete_comment, name="delete-comment"),
+    
+    # Subscribe Function
+    path("add-sub/<int:id>/", views.add_new_subscribers, name="add_sub"),
+    path("sub-load/<int:id>/", views.load_channel_subs, name="subLoad"),
 ]
