@@ -157,7 +157,7 @@
 
                             {% csrf_token %}
                             <div class="heading flex">
-                                <input type="" value="{{ video.id }}" id="id" name="id">
+                                <input type="hidden" value="{{ video.id }}" id="id" name="id">
                                 <input type="text" placeholder="Add a comment..." id="comment" name="comment">
                                 <button ><i class="material-icons">send</i></button>
                             </div>
@@ -202,7 +202,7 @@
                                             </div>
 
                                             <div class="icon">
-                                                <input type="" value="{{ c.id }}" name="" id="">
+                                                <input type="hidden" value="{{ c.id }}" name="" id="">
                                                 <label for=""><button data-cid={{c.id}} class="btn-del" style="color: red;"><small>Delete</small></button></label>
                                             </div>
             
@@ -315,7 +315,7 @@
             success: function(){
                 console.log("Comment passed to backend");
 
-                let _html =  '<div class="details_Comment">\
+                let _html =  '<div class="details-Comment">\
                         <div class="details flex">\
                             <div class="img">\
                                 <img  src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" alt="">\
@@ -325,9 +325,33 @@
                                 <p> '+ _comment +' </p>\
                                 <div class="comment-like flex">\
                                     <div class="icon">\
-                                        <label for=""><a href=""><small style="color: red;">Delete</small></a></label>\
+                                        <i class="fa fa-thumbs-up"></i>\
+                                        <label for=""><small>2</small></label>\
+                                    </div>\
+                                    <div class="icon">\
+                                        <i class="fa fa-thumbs-down"></i>\
+                                        <label for=""><small>Dislike</small></label>\
+                                    </div>\
+                                    <div class="icon">\
+                                        <label for=""><a><small>Reply</small></a></label>\
+                                    </div>\
+                                    <div class="icon">\
+                                        <input type="hidden" value="{{ c.id }}" name="" id="">\
+                                        <label for=""><button data-cid={{c.id}} class="btn-del" style="color: red;"><small>Delete</small></button></label>\
                                     </div>\
                                 </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class="replay">\
+                        <label for="" class="tags"><i class="fa fa-caret-up"></i>Hide Reply</label>\
+                        <div class="replay-details flex">\
+                            <div class="img">\
+                                <img  src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"  alt="">\
+                            </div>\
+                            <div class="text">\
+                                <h4><label for="">Desphixs</label><i class="fas fa-check-circle"></i><span>16 Months ago</span></h4>\
+                                <p>Thank you</p>\
                             </div>\
                         </div>\
                     </div>\
