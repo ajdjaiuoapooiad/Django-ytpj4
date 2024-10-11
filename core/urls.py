@@ -12,4 +12,8 @@ urlpatterns = [
     # Subscribe Function
     path("add-sub/<int:id>/", views.add_new_subscribers, name="add_sub"),
     path("sub-load/<int:id>/", views.load_channel_subs, name="subLoad"),
+    
+    # Like Function
+    path("add-like/<int:id>/", views.add_new_like, name="add_like"),
+    path("likes-load/<int:id>/", views.load_video_likes, name="likeLoad"),
 ]
