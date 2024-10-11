@@ -88,9 +88,9 @@
                <div class="video">
                    <div class="video-thumbnail">
                        {% if v.image %}
-                       <a href=""><img src="{{v.image.url}}" alt=""></a>
+                       <a href="{% url 'video-detail' v.id %}"><img src="{{v.image.url}}" alt=""></a>
                        {% else %}
-                       <a href=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrf0lpB42PwkxZCIvkgPjzFbA4SMYVhjyVLDdrC5_OLJEAI4GCqBfknjVqIeqQXvHuX9A&usqp=CAU" alt=""></a>
+                       <a href="{% url 'video-detail' v.id %}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrf0lpB42PwkxZCIvkgPjzFbA4SMYVhjyVLDdrC5_OLJEAI4GCqBfknjVqIeqQXvHuX9A&usqp=CAU" alt=""></a>
                        {% endif %}
                    </div>
                    <div class="video-details">
@@ -102,8 +102,8 @@
                            {% endif %}
                        </div>
                        <div class="title">
-                           <a href=""><h3>{{v.title|truncatechars:34}}</h3></a>
-                           <a href=""><small>{{v.user.channel.channel_name}} {% if v.user.channel.verified == True %} <i class="fas fa-check-circle"></i> {% endif %} </small></a>
+                           <a href="{% url 'video-detail' v.id %}"><h3>{{v.title|truncatechars:34}}</h3></a>
+                           <a href="{% url 'channel-profile' v.user.channel.id %}"><small>{{v.user.channel.channel_name}} {% if v.user.channel.verified == True %} <i class="fas fa-check-circle"></i> {% endif %} </small></a>
                            <span><small>{{ v.views }} View{{ v.views|pluralize }} . {{ v.date|timesince }} ago</small></span>
                        </div>
                    </div>
