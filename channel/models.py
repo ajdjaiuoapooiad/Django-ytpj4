@@ -27,6 +27,8 @@ class Channel(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True,related_name="channel")
     subscribers = models.ManyToManyField(User,related_name="user_subs")
     verified = models.BooleanField(default=False)
+    
+    
 
     def __str__(self):
         return self.channel_name

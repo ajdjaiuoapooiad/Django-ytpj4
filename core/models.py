@@ -26,6 +26,9 @@ class Video(models.Model):
     views = models.PositiveIntegerField(default=0)
     likes = models.ManyToManyField(User, related_name="likes")
 
+    # Add Featured Field
+    featured = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.title
