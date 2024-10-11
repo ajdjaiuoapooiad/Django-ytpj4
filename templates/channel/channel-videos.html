@@ -52,29 +52,18 @@
        <div class="videos">
            
            {% include 'channel/partials/channel-header.html' %}
-           
-           
-           {% if video_featured != None %}
-           <div class="channel-intro-video">
-               <div class="intro-video">
-                   <video controls>
-                       <source src="{{video_featured.video.url}}" type="video/mp4">
-                   </video>
-               </div>
-               <div class="intro-contents">
-                   <h3>{{video_featured.title|truncatechars:100}}</h3>
-                   <small class="small">{{video_featured.views}} view{{video_featured.views|pluralize}} - {{video_featured.date|timesince}} ago</small>
-                   <p>{{ video_featured.description|truncatechars:100 }}</p>
-    
-                   <small>Read More</small>
-               </div>
-           </div>
-           {% endif %}
     
            <hr>
            <br>
+
+
+
+
+<!-- Video                  -------------------------------------------->
+
+
            <div class="popular-video flex">
-               <h3>Popular uploads</h3>
+               <h3>All Videos</h3>
                <div class="flex play-all">
                    <i class="material-icons">play_arrow</i>
                    <a href="">Play All</a>
@@ -113,11 +102,10 @@
        </div>
     </div>
 
-
-
-
+    
 {% include 'channel/partials/subscribe-axios.html' %}
 
 </body>
 </html>
+
 

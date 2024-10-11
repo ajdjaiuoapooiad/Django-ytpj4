@@ -10,6 +10,7 @@ from core.models import Comment, Video
 
 def index(request):
     video = Video.objects.filter(visibility='public')
+    
     context = {
         'video' : video,
     }
