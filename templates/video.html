@@ -132,7 +132,7 @@
                         
                         <div class="heading">
                             <h4>
-                                {{video.user.channel.channel_name}}
+                                <a href="{% url 'channel-profile' channel.id %}">{{video.user.channel.channel_name}}</a>
                                 {% if video.user.channel.verified == True %} <i class="fas fa-check-circle"></i> {% endif %}     
                             </h4>
                             <span id="count">{{video.user.channel.subscribers.all.count}}</span> <span>Subscribers</span>
