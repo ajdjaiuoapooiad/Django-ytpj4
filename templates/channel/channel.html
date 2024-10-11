@@ -54,10 +54,11 @@
            {% include 'channel/partials/channel-header.html' %}
            
            
+           {% if video_featured != None %}
            <div class="channel-intro-video">
                <div class="intro-video">
                    <video controls>
-                       <source src="" type="video/mp4">
+                       <source src="{{video_featured.video.url}}" type="video/mp4">
                    </video>
                </div>
                <div class="intro-contents">
@@ -68,7 +69,7 @@
                    <small>Read More</small>
                </div>
            </div>
-          
+           {% endif %}
     
            <hr>
            <br>
@@ -81,18 +82,18 @@
            </div>
            <br>
 
-           <div class="videos__container">
+           <div class="video-container">
                <!-- Single Video Starts Here -->
                {% for v in videos %}
                <div class="video">
-                   <div class="video__thumbnail">
+                   <div class="video-thumbnail">
                        {% if v.image %}
                        <a href=""><img src="{{v.image.url}}" alt=""></a>
                        {% else %}
                        <a href=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrf0lpB42PwkxZCIvkgPjzFbA4SMYVhjyVLDdrC5_OLJEAI4GCqBfknjVqIeqQXvHuX9A&usqp=CAU" alt=""></a>
                        {% endif %}
                    </div>
-                   <div class="video__details">
+                   <div class="video-details">
                        <div class="author">
                            {% if v.user.channel.image %}
                            <a href="{% url 'channel-profile' v.user.channel.id %}"><img src="{{ v.user.channel.image.url }}" alt=""></a>
@@ -115,3 +116,38 @@
 
 
 </html>
+
+
+
+
+<script>
+    let subcounter = document.getElementById('count')
+    sub_button = document.getElementById('sub_btn')
+    subscriber_added = []
+    
+    function addsub(){
+        axios
+        .get('{% url "add_sub" channel.user.pk %}')
+        .then(response =>{
+                this.response = response.data;
+                sub_button.innerHTML =  this.response;
+                loadsub()
+                // sub_button.classList.remove('loading')
+                sub_button.classList.toggle("unsubscribe-btn")
+        })
+    }
+    
+    function loadsub(){
+        axios
+        .get('{% url "subLoad" channel.user.pk %}')
+        .then(response =>{
+                this.response = response.data;
+                subscriber_added = this.response
+                subcounter.innerHTML = subscriber_added.length
+
+    
+        })
+    }
+    
+    window.onload = loadsub;
+</script>
