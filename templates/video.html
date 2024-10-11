@@ -89,13 +89,14 @@
 
                         <div class="flex">
                             <div class="icon">
-                                <a href=""><i class="fa fa-thumbs-up"></i></a>
-                                <label for="">5k</label>
+                                <button style="font-size: 17px;" id="like-button" onclick="addlike()"><i class="fa fa-thumbs-up"></i></button>
+                                <label for=""><span id="like-count"></span></label>
                             </div>
 
                             <div class="icon">
-                                <a href=""><i class="fa fa-thumbs-down"></i></a>
-                                <label for="">Deslike</label>
+                                <button style="font-size: 17px;" id="like-button" onclick="addlike()"><i class="fa fa-thumbs-down"></i></button>
+                                <label for=""><span id="like-count"></span></label>
+                                
                             </div>
 
                             <div class="icon">
@@ -455,3 +456,37 @@
     window.onload = loadsub;
 </script>
 
+
+<!-- Likes Feature              ------------------------------------->
+ 
+<script>
+    let likescounter = document.getElementById('like-count')
+    like_button = document.getElementById('like-button')
+    likes_added = []
+    
+    function addlike(){
+        axios
+        .get('{% url "add_like" video.id %}')
+        .then(response =>{
+                this.response = response.data;
+                sub_button.innerHTML =  this.response;
+                loadlike()
+                // // sub_button.classList.remove('loading')
+                // sub_button.classList.toggle("unsubscribe-btn")
+        })
+    }
+    
+    function loadlike(){
+        axios
+        .get('{% url "likeLoad" video.id %}')
+        .then(response =>{
+                this.response = response.data;
+                likes_added = this.response
+                likescounter.innerHTML = likes_added.length
+
+    
+        })
+    }
+    
+    window.onload = loadlike();
+</script>
