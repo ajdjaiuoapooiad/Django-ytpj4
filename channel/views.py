@@ -35,6 +35,15 @@ def channel_videos(request,channel_name):
     }
     return render(request,"channel/channel-videos.html",context)
 
+def channel_about(request, channel_name):
+    channel = get_object_or_404(Channel, id=channel_name)
+        
+    context = {
+        "channel":channel,
+    }
+
+    return render(request, "channel/channel-about.html", context)
+
 def channel_community(request, channel_name):
     channel = get_object_or_404(Channel, id=channel_name)
     community = Community.objects.filter(channel=channel, status="active").order_by("-date")
