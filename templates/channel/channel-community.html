@@ -95,13 +95,12 @@
                         </div>
                         <div class="icon-section">
                             <div class="single-icon">
-                                <a href=""><i class="material-icons material-symbols-outlined">thumb_up</i></a>
+                                <a href="{% url 'community-post-like' c.id %}"><i class="material-icons material-symbols-outlined">thumb_up</i></a>
                                 <span>{{c.likes.all.count}}</span>
                             </div>
-
+    
                             <div class="single-icon">
-                                <a href=""><i class="material-icons material-symbols-outlined">thumb_down</i></a>
-                                <span>10</span>
+                                <a href="{% url 'community-post-like' c.id %}"><i class="material-icons material-symbols-outlined">thumb_down</i></a>
                             </div>
 
                             <div class="single-icon">
