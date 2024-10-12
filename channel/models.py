@@ -32,3 +32,15 @@ class Channel(models.Model):
 
     def __str__(self):
         return self.channel_name
+    
+class Community(models.Model):
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=100, choices=STATUS, default="active")
+    likes = models.ManyToManyField(User)
+
+    def __str__(self):
+        return self.channel.channel_name
+     

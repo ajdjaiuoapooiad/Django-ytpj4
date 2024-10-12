@@ -56,7 +56,7 @@ body {
   height: 100%;
 }
 
-.header__search button {
+.header-search button {
   padding: 0;
   margin: 0;
   height: 100%;
@@ -122,7 +122,7 @@ hr {
   overflow-y: scroll;
 }
 
-.videos__container {
+.video-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -131,7 +131,6 @@ hr {
 
 .video {
   width: 310px;
-
   margin-bottom: 30px;
 }
 
