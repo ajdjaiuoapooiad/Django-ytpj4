@@ -1,8 +1,10 @@
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
 from channel.models import Channel, Community, CommunityComment
 from core.models import Video
+from django.contrib.auth.decorators import login_required
 
 
 def channel_profile(request,channel_name):
@@ -59,3 +61,17 @@ def channel_community_detail(request, channel_name, community_id):
     }
 
     return render(request, "channel/channel-community-detail.html", context)
+
+
+@login_required
+def create_comment(request, community_id):
+
+    if request.method == "POST":
+        community = Community.objects.get(id=community_id, status="active")
+        comment = request.POST.get("comment")
+        user = request.user 
+
+        new_comment = CommunityComment.objects.create(community=community, user=user, comment=comment)
+        new_comment.save()
+        messages.success(request, f"Comment Posted.")
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))

@@ -128,8 +128,10 @@
                                 <div class="create-comment-img">
                                     <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt="">
                                 </div>
+
+
                                 <!-- Comment Form -->
-                                <form action="" method="POST">
+                                <form action="{% url 'community-create-comment' community.id %}" method="POST">
                                     {% csrf_token %}
                                     <div class="create-comment-input">
                                         <input class="comment-class" name="comment" id="comment" type="text" placeholder="Add a comment">
@@ -137,6 +139,9 @@
                                     </div>
                                 </form>
                                 <!-- End COmment FOrm -->
+
+
+
                             </div>
     
                             <!-- Comments Section -->
