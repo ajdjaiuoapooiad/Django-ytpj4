@@ -1,7 +1,7 @@
 
 from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
-from channel.models import Channel, Community
+from channel.models import Channel, Community, CommunityComment
 from core.models import Video
 
 
@@ -44,3 +44,18 @@ def channel_community(request, channel_name):
 
     return render(request, "channel/channel-community.html", context)
 
+
+def channel_community_detail(request, channel_name, community_id):
+    channel = get_object_or_404(Channel, id=channel_name)
+    community = Community.objects.get(channel=channel, id=community_id, status="active")
+
+    # Listing all Comments for a community post
+    comments = CommunityComment.objects.filter(active=True, community=community).order_by("-date")
+
+    context = {
+        "community":community,
+        "comments":comments,
+        "channel":channel,
+    }
+
+    return render(request, "channel/channel-community-detail.html", context)
