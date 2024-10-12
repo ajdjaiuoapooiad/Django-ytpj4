@@ -50,3 +50,18 @@ class Community(models.Model):
     class Meta:
         verbose_name = "Community"
         verbose_name_plural = "Community Posts"
+        
+class CommunityComment(models.Model):
+    community = models.ForeignKey(Community, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=10000)
+    date = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.community.channel.channel_name
+    
+    class Meta:
+        verbose_name = "Community Comments"
+        verbose_name_plural = "Community Comments"
