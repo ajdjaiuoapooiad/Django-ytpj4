@@ -1,7 +1,7 @@
 
 from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
-from channel.models import Channel
+from channel.models import Channel, Community
 from core.models import Video
 
 
@@ -32,3 +32,15 @@ def channel_videos(request,channel_name):
         'videos': videos,
     }
     return render(request,"channel/channel-videos.html",context)
+
+def channel_community(request, channel_name):
+    channel = get_object_or_404(Channel, id=channel_name)
+    community = Community.objects.filter(channel=channel, status="active").order_by("-date")
+
+    context = {
+        "community":community,
+        "channel":channel,
+    }
+
+    return render(request, "channel/channel-community.html", context)
+
