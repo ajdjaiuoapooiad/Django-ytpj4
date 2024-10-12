@@ -108,8 +108,8 @@
                             </div>
 
                             <div class="single-icon">
-                                <a href=""><i class="material-icons material-symbols-outlined">chat</i></a>
-                                <span>20</span>
+                                <a href="{% url 'channel-community-detail' c.channel.id c.id %}"><i class="material-icons material-symbols-outlined">chat</i></a>
+                                <span>{{c.comments.all.count}}</span>
                             </div>
                         </div>
                     </div>
