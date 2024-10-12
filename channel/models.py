@@ -13,6 +13,9 @@ STATUS =  (
    
 )
 
+def user_directory_path(instance, filename):
+    return "user_{0}/{1}".format(instance.channel.user.id, filename)
+
 
 
 class Channel(models.Model):
@@ -44,3 +47,6 @@ class Community(models.Model):
     def __str__(self):
         return self.channel.channel_name
      
+    class Meta:
+        verbose_name = "Community"
+        verbose_name_plural = "Community Posts"
