@@ -8,6 +8,16 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
+<style>
+    .message-alert{
+        background-color: rgb(169, 255, 166);
+        padding: 14px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(13, 161, 0);
+    }
+</style>
+
 {% endblock style %}
 
 {% block content %}
@@ -59,6 +69,15 @@
         </div>
 
         <div class="videos">
+
+            {% if messages %}
+                <div class="message-alert">
+                    {% for message in messages %}
+                        <strong>{{message}}</strong>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <div class="drop-down-container">
 
                 <h1>Recommends</h1>

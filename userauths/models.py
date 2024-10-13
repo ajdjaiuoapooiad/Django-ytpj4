@@ -17,7 +17,7 @@ class User(AbstractUser):
 
 class Profile(Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    saved_videos = models.ManyToManyField(Video, null=True, blank=True, related_name="saved_videos")
+    saved_videos = models.ManyToManyField(Video, blank=True, related_name="saved_videos")
 
     def __str__(self):
         return self.user.username

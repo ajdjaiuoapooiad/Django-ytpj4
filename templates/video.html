@@ -20,8 +20,14 @@
 
     <style>
     
+        .fa{
+            color: black;
+        }
         a{
             color: black;
+        }
+        #channel-tag{
+            color: blue;
         }
         .unsubscribe-btn{
             background-color: gray;
@@ -110,8 +116,10 @@
                             </div>
 
                             <div class="icon">
-                                <a href=""><i class="fa fa-bookmark"></i></a>
-                                <label for="">Save</label>
+                                <a href="{% url 'save-video' video.id %}">
+                                    <i class="fa fa-bookmark"></i>
+                                    <label for="">Save</label>
+                                </a>
                             </div>
 
                             <div class="icon">
