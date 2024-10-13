@@ -16,4 +16,7 @@ urlpatterns = [
     # Like Function
     path("add-like/<int:id>/", views.add_new_like, name="add_like"),
     path("likes-load/<int:id>/", views.load_video_likes, name="likeLoad"),
+    
+    # Saving Video TO Profile
+    path("save-video/<video_id>/", views.save_video, name="save-video"),
 ]
