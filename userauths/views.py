@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login 
 from userauths.forms import UserRegisterForm
+from django.contrib.auth import logout
 
 
 User = settings.AUTH_USER_MODEL
@@ -31,3 +32,33 @@ def RegisterView(request):
         "form":form,
     }
     return render(request, "userauths/sign-up.html", context)
+
+def loginView(request):
+    if request.user.is_authenticated:
+        return redirect("index")
+    
+    if request.method == "POST":
+        email = request.POST.get("email") ## {{ form.email }} X
+        password = request.POST.get("password")
+
+        try:
+            user = User.objects.get(email=email)
+        except:
+            messages.warning(request, "User does not exist")
+        
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You are logged in")
+            return redirect("index")
+        else:
+            messages.warning(request, "Username or Password, Does not exist")
+            
+    return render(request, "userauths/sign-in.html")
+
+
+def logoutView(request):
+    logout(request)
+    return redirect("sign-in")
+

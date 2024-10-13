@@ -9,6 +9,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
 <style>
+    a{
+        color: black;
+    }
     .message-alert{
         background-color: rgb(169, 255, 166);
         padding: 14px;
@@ -23,60 +26,11 @@
 {% block content %}
 
     <div class="mainBody">
-        <div class="sidebar">
-
-            <div class="sidebar-categories">
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">home</i>
-                    <span>Home</span>
-                </div>
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">local_fire_department</i>
-                    <span>Trending</span>
-                </div>
-                
-                <div class="sidebar-category">
-                    <i class="material-icons">subscriptions</i>
-                    <span>Subscriptions</span>
-                </div>
-    
-                <hr>
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">library_add_check</i>
-                    <span>Library</span>
-                </div>
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">play_arrow</i>
-                    <span>Your Video</span>
-                </div>
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">watch_later</i>
-                    <span>History</span>
-                </div>
-    
-                <div class="sidebar-category">
-                    <i class="material-icons">thumb_up</i>
-                    <span>Liked Video</span>
-                </div>
-    
-                <hr>
-            </div>
-        </div>
+        {% include 'partials/sidebar.html' %}
 
         <div class="videos">
 
-            {% if messages %}
-                <div class="message-alert">
-                    {% for message in messages %}
-                        <strong>{{message}}</strong>
-                    {% endfor %}
-                </div>
-            {% endif %}
+            {% include 'partials/alert.html' %}
 
             <div class="drop-down-container">
 
