@@ -8,6 +8,9 @@
     <title>Youtube</title>
     <link rel="icon" href="{% static 'images/youtube-icon.png' %}">
     
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    
     {% block style %}
 
     {% endblock style %}
@@ -33,7 +36,7 @@
 
         <div class="header-icons">
             <i class="material-icons display-this">search</i>
-            <i class="material-icons display-this">videocam</i>
+            <a href="{% url 'upload-video' %}"><i class="material-icons ">videocam</i></a>
             <i class="material-icons display-this">apps</i>
             <i class="material-icons display-this">notifications</i>
             <i id="drop-down" class="material-icons display-this">account_circle</i>
