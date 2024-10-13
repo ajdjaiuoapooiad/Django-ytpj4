@@ -20,6 +20,9 @@ urlpatterns = [
 
      # Uplading Video URL
     path("channel/create/video/", views.video_upload, name="upload-video"),
+    
+    # Edit Video URL
+    path("channel/edit-video/<channel_id>/<video_id>/", views.video_edit, name="video-edit"),
 
 
 
