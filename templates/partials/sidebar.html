@@ -38,7 +38,32 @@
             <i class="material-icons">thumb_up</i>
             <span>Liked Video</span>
         </div>
-
         <hr>
+        
     </div>
+
+   
+    <div class="sidebar-categories">
+        
+        {% if not request.user.is_authenticated %}
+        <!-- Single Category -->
+        <a href="{% url 'sign-in' %}">
+            <div class="sidebar-category">
+                <i class="material-icons">login</i>
+                <span>Login</span>
+            </div>
+        </a>
+        {% else %}
+        <!-- Single Category -->
+        <a href="{% url 'sign-out' %}">
+            <div class="sidebar-category">
+                <i class="material-icons">logout</i>
+                <span>Logout</span>
+            </div>
+        </a>
+        {% endif %}
+        
+    </div>
+    <hr>
+
 </div>
