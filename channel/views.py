@@ -121,7 +121,7 @@ def video_upload(request):
             new_form.save()
             form.save_m2m()
             messages.success(request, f"Video Uploaded Successfully.")
-            return redirect("index")
+            return redirect("channel-profile",user.channel.id)
     else:
         form = VideoForm()
         
