@@ -11,3 +11,9 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = ['video', 'image', 'title', 'description', 'tags', 'visibility']
+
+class CommunityForm(forms.ModelForm):
+
+    class Meta:
+        model = Community
+        fields = ['content', 'image']

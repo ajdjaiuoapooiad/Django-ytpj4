@@ -1,51 +1,22 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube</title>
-    <link rel="icon" href="{% static 'images/youtube-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/channel.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/channel-community.css' %}" type="text/css">
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/channel-community.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/channel.css' %}" type="text/css">
 
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+<style>
+    a{
+        color: black;
+    }
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</style>
 
+{% endblock style %}
 
-</head>
-
-<body>
-    
-    <div class="header">
-       <div class="header-left">
-           <i id="menu" class="material-icons">menu</i>
-           <a href="{% url 'index' %}">
-               <img  src="https://www.xda-developers.com/files/2017/08/After-12-Years-Google-Gives-YouTube-a-New-Logo-1900x700_c.png" alt="">
-           </a>
-       </div>
-    
-       <div class="header-search">
-           <form action="">
-               <input type="text" placeholder="search">
-               <button><i class="material-icons">search</i></button>
-           </form>
-       </div>
-    
-       <div class="header-icons">
-           <i class="material-icons display-this">search</i>
-           <i class="material-icons display-this">videocam</i>
-           <i class="material-icons display-this">apps</i>
-           <i class="material-icons display-this">notifications</i>
-           <i id="drop-down" class="material-icons display-this">account_circle</i>
-    
-       </div>
-    
-    </div>
+{% block content %}
     
     <div class="mainBody">
         
@@ -73,6 +44,9 @@
                             <!-- <div class="elipse-icon">
                                 <i class="material-symbols-outlined">sort</i>
                             </div> -->
+
+
+
                             {% if c.channel.user == request.user %}
                             <div class="dropdown">
                                 <button class="dropbtn"> 
@@ -83,8 +57,11 @@
                                     <a href=""> <i class="material-symbols-outlined">delete</i> &nbsp; Delete</a>
                                     <a href="#"> <i class="material-symbols-outlined">share</i> &nbsp; Share</a>
                                 </div>
-                                </div>
+                            </div>
                             {% endif %}
+
+
+
                         </div>
                         <div class="content">
                             <a href="{% url 'channel-community-detail' c.channel.id c.id %}"><h3>{{ c.content|truncatechars:200 }}</h3></a>
@@ -126,7 +103,5 @@
     
 {% include 'channel/partials/subscribe-axios.html' %}
 
-</body>
-</html>
-
+{% endblock content %}
 
