@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
     </head>
 
+  
+
+
     <body class="nk-body bg-lighter npc-default has-sidebar no-touch nk-nio-theme">
         <div class="main-wrapper">
             <div class="header header-one">
@@ -205,7 +208,7 @@
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                                 <a class="dropdown-item" href="{% url 'video-edit' v.user.id v.id %}"><i class="far fa-edit me-2"></i>Edit</a>
                                                                 <a class="dropdown-item" href="{% url 'video-detail' v.id  %}"><i class="far fa-eye me-2"></i>View</a>
-                                                                <a class="dropdown-item" href=""><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                                                <a class="dropdown-item" href="{% url 'video-delete' v.id  %}"><i class="far fa-trash-alt me-2"></i>Delete</a>
                                                                 <!-- <a class="dropdown-item" href="javascript:void(0);"><i class="far fa-check-circle me-2"></i>Mark as sent</a> -->
                                                                 <!-- <a class="dropdown-item" href="javascript:void(0);"><i class="far fa-paper-plane me-2"></i>Send Invoice</a> -->
                                                                 <!-- <a class="dropdown-item" href="javascript:void(0);"><i class="far fa-copy me-2"></i>Clone Invoice</a> -->
