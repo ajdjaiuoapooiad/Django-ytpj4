@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
+
 
 
 from channel.models import Channel
@@ -95,6 +97,7 @@ def add_new_subscribers(request, id):
         response = "Unsubscribe"
         return JsonResponse(response, safe=False, status=200)
     
+    
     # Load channel subs
 def load_channel_subs(request, id):
     subscribers = Channel.objects.get(id=id)
@@ -121,3 +124,22 @@ def load_video_likes(request, id):
     video = Video.objects.get(id=id)
     likes_lists = list(video.likes.values())
     return JsonResponse(likes_lists, safe=False, status=200)
+
+
+
+
+def searchView(request):
+    video = Video.objects.filter(visibility="public").order_by("-date")
+    query = request.GET.get("q")
+    if query:
+        video = video.filter(
+            Q(title__icontains=query)|
+            Q(description__icontains=query)
+        ).distinct()
+    
+    context = {
+        "video":video,
+        "query":query,
+
+    }
+    return render(request, "search.html", context)
