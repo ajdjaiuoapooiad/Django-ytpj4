@@ -200,3 +200,11 @@ def edit_community_post(request, channel_id, community_post_id):
         "form":form,
     }
     return render(request, "channel/create-post.html", context)
+
+@login_required
+def delete_comm_post(request, channel_id, post_id):
+    channel = Channel.objects.get(id=channel_id)
+    post = Community.objects.get(id=post_id)
+
+    post.delete()
+    return redirect("channel-community", channel.id)
