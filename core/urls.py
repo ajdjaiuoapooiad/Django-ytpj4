@@ -19,4 +19,8 @@ urlpatterns = [
     
     # Saving Video TO Profile
     path("save-video/<video_id>/", views.save_video, name="save-video"),
+    
+     # Search URL
+    path("video/search/", views.searchView, name="search"),
+
 ]

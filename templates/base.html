@@ -8,9 +8,6 @@
     <title>Youtube</title>
     <link rel="icon" href="{% static 'images/youtube-icon.png' %}">
     
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    
     {% block style %}
 
     {% endblock style %}
@@ -35,8 +32,8 @@
         </div>
 
         <div class="header-search">
-            <form action="">
-                <input type="text" placeholder="search">
+            <form action="{% url 'search' %}" method="GET">
+                <input type="text" placeholder="search" name="q">
                 <button><i class="material-icons">search</i></button>
             </form>
         </div>
