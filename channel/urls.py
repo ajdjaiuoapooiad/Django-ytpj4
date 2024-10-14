@@ -27,6 +27,9 @@ urlpatterns = [
     # Create Communiy POSt URL
     path("channel/create-community-post/<channel_id>/", views.create_community_post, name="create-post"),
 
+      # Edit Communiy POSt URL
+    path("channel/edit-community-post/<channel_id>/<community_post_id>/", views.edit_community_post, name="edit-post"),
+
 
 
 

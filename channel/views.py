@@ -177,3 +177,26 @@ def create_community_post(request, channel_id):
         "form":form,
     }
     return render(request, "channel/create-post.html", context)
+
+@login_required
+def edit_community_post(request, channel_id, community_post_id):
+    channel = Channel.objects.get(id=channel_id)
+    post = Community.objects.get(id=community_post_id)
+    user = request.user 
+
+    if request.method == "POST":
+        form = CommunityForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.channel = channel
+            new_form.save()
+            post_id = new_form.id
+            messages.success(request, "Post Edited.")
+            return redirect("channel-community-detail", channel.id, post_id)
+    else:
+        form = CommunityForm(instance=post)
+        
+    context = {
+        "form":form,
+    }
+    return render(request, "channel/create-post.html", context)
