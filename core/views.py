@@ -1,9 +1,10 @@
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
+from taggit.models import Tag
 
 
 
@@ -143,3 +144,18 @@ def searchView(request):
 
     }
     return render(request, "search.html", context)
+
+def tag_list(request, tag_slug=None):
+    video = Video.objects.filter(visibility="public").order_by("-date")
+
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        video = video.filter(tags__in=[tag])
+
+    context = {
+    "video":video,
+    "tag":tag,
+
+    }
+    return render(request, "tags.html", context)

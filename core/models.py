@@ -3,6 +3,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.conf import settings
 
+
 User = settings.AUTH_USER_MODEL
 
 VISIBILITY =  (
