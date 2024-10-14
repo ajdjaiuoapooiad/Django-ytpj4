@@ -30,6 +30,8 @@ urlpatterns = [
       # Edit Communiy POSt URL
     path("channel/edit-community-post/<channel_id>/<community_post_id>/", views.edit_community_post, name="edit-post"),
 
+      # Delete Communiy POSt URL
+    path("channel/delete-community-post/<channel_id>/<post_id>/", views.delete_comm_post, name="delete-post")
 
 
 
