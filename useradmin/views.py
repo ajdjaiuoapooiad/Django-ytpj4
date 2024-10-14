@@ -20,3 +20,8 @@ def Studio(request):
     }
 
     return render(request, "useradmin/studio.html", context)
+
+# def Video_delete(request, vid):
+#     user = request.user
+#     video = Video.objects.get(id=vid, user=user)
+#     video.delete()

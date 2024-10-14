@@ -22,8 +22,14 @@
         </div>
     </div>
     <div class="channel-header-btns">
-        <div><a href="" class="channel-join">Join</a></div>
+        {% if request.user == channel.user %}
+        <div><a href="{% url 'studio'  %}" class="channel-join">Studio</a></div>
+        {% endif %}
+
+        {% if request.user != channel.user %}
         <div><button id="sub_btn" onclick="addsub()" class="channel-subscribe sub_button_channel">Subscribe</button></div>
+        {% endif %}
+        
     </div>
 </div>
 <div class="channel-header-links flex">
