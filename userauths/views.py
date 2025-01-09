@@ -44,7 +44,7 @@ def loginView(request):
         try:
             user = User.objects.get(email=email)
         except:
-            messages.warning(request, "User does not exist")
+            pass
         
         user = authenticate(request, email=email, password=password)
 

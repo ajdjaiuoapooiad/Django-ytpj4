@@ -5,12 +5,14 @@ from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from taggit.models import Tag
+from django.contrib.auth.decorators import login_required
 
 
 
 from channel.models import Channel
 from core.models import Comment, Video
 
+@login_required
 def index(request):
     video = Video.objects.filter(visibility='public')
     
